@@ -18,13 +18,44 @@
   </style>
   <div class="redirect-box">
     <h2>Halaman tidak ditemukan</h2>
-    <p>Sepertinya Anda membuka alamat langsung (clean URL). Untuk menjalankan aplikasi klik salah satu tombol di bawah:</p>
+    <p>Halaman ini adalah fallback untuk aplikasi SPA. Kami akan memuat aplikasi dan meneruskan Anda ke rute yang Anda minta (clean URL) — ini memungkinkan URL tanpa <code>#</code>.</p>
+    <p style="color:#666;font-size:13px;margin-top:10px">Jika Anda tetap melihat masalah, klik tombol di bawah untuk membuka beranda atau halaman kontrol.</p>
     <p>
       <a class="redirect-btn" href="/Viridelis/">Buka Beranda Aplikasi</a>
-      <a class="redirect-btn" href="/Viridelis/#/control">Buka Halaman Kontrol (Direkomendasikan)</a>
+      <a class="redirect-btn" href="/Viridelis/#/control">Buka Halaman Kontrol (Hash)</a>
     </p>
-    <p style="color:#666;font-size:13px;margin-top:10px">Jika tombol tidak bekerja, coba refresh (Ctrl+F5) atau buka di mode Incognito.</p>
   </div>
+
+  <script>
+    // SPA fallback for GitHub Pages: fetch index.html and inject it so BrowserRouter can handle clean URLs
+    (function () {
+      try {
+        var repoBase = '/Viridelis';
+        var pathname = window.location.pathname || '/';
+        // ignore requests for assets (images/css/js/etc.)
+        if (pathname.match(/\.(js|css|png|jpg|jpeg|svg|ico|json)$/i)) return;
+
+        var indexUrl = repoBase + '/index.html';
+        fetch(indexUrl, { cache: 'no-store' })
+          .then(function (r) { return r.text(); })
+          .then(function (html) {
+            // write index.html content into this document
+            document.open();
+            document.write(html);
+            document.close();
+            // restore the requested clean URL in the address bar so BrowserRouter sees it
+            var requested = window.location.pathname + window.location.search + window.location.hash;
+            if (requested.indexOf(repoBase) !== 0) requested = repoBase + requested;
+            try { history.replaceState(null, '', requested); } catch (e) { /* ignore */ }
+          })
+          .catch(function () {
+            // on failure, keep the 404 UI visible (user can click links)
+          });
+      } catch (e) {
+        // noop
+      }
+    })();
+  </script>
 </head>
 <body>
   <div class="box">
