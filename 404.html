@@ -9,33 +9,22 @@
     .box{text-align:center;color:#333}
     a{color:#0366d6;text-decoration:none}
   </style>
-  <!-- JS redirect: jika user membuka /Viridelis/some/path (clean URL),
-       arahkan ke /Viridelis/#/some/path sehingga HashRouter menangani route -->
-  <script>
-    (function() {
-      try {
-        var repoBase = '/Viridelis';
-        var pathname = window.location.pathname || '/';
-        // Jika request sudah ke file statis root (index.html) biarkan
-        if (pathname === repoBase + '/' || pathname === repoBase || pathname === '/') {
-          // redirect ke beranda dengan hash root
-          window.location.replace(repoBase + '/#/');
-          return;
-        }
-        // Hapus prefix repoBase jika ada
-        var relative = pathname.indexOf(repoBase) === 0 ? pathname.slice(repoBase.length) : pathname;
-        // Pastikan diawali '/'
-        if (relative[0] !== '/') relative = '/' + relative;
-        // Bangun URL hash-preserving
-        var target = repoBase + '/#' + relative;
-        // Redirect segera
-        window.location.replace(target);
-      } catch (e) {
-        // Jika error, fallback ke homepage setelah 3 detik
-        setTimeout(function(){ window.location.replace('/Viridelis/'); }, 3000);
-      }
-    })();
-  </script>
+  <!-- Tampilkan pesan dan tombol manual untuk pindah ke aplikasi (hash URL).
+       Ini lebih aman daripada redirect otomatis di edge node yang mungkin belum
+       menyajikan versi terbaru dari 404.html. -->
+  <style>
+    .redirect-box{max-width:720px;margin:40px auto;padding:28px;background:#fff;border-radius:12px;text-align:center}
+    .redirect-btn{display:inline-block;margin:8px 12px;padding:10px 18px;border-radius:8px;background:#0366d6;color:#fff;text-decoration:none}
+  </style>
+  <div class="redirect-box">
+    <h2>Halaman tidak ditemukan</h2>
+    <p>Sepertinya Anda membuka alamat langsung (clean URL). Untuk menjalankan aplikasi klik salah satu tombol di bawah:</p>
+    <p>
+      <a class="redirect-btn" href="/Viridelis/">Buka Beranda Aplikasi</a>
+      <a class="redirect-btn" href="/Viridelis/#/control">Buka Halaman Kontrol (Direkomendasikan)</a>
+    </p>
+    <p style="color:#666;font-size:13px;margin-top:10px">Jika tombol tidak bekerja, coba refresh (Ctrl+F5) atau buka di mode Incognito.</p>
+  </div>
 </head>
 <body>
   <div class="box">
