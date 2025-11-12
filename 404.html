@@ -9,8 +9,33 @@
     .box{text-align:center;color:#333}
     a{color:#0366d6;text-decoration:none}
   </style>
-  <!-- Redirect ke beranda project setelah 3 detik -->
-  <meta http-equiv="refresh" content="3;url=/Viridelis/">
+  <!-- JS redirect: jika user membuka /Viridelis/some/path (clean URL),
+       arahkan ke /Viridelis/#/some/path sehingga HashRouter menangani route -->
+  <script>
+    (function() {
+      try {
+        var repoBase = '/Viridelis';
+        var pathname = window.location.pathname || '/';
+        // Jika request sudah ke file statis root (index.html) biarkan
+        if (pathname === repoBase + '/' || pathname === repoBase || pathname === '/') {
+          // redirect ke beranda dengan hash root
+          window.location.replace(repoBase + '/#/');
+          return;
+        }
+        // Hapus prefix repoBase jika ada
+        var relative = pathname.indexOf(repoBase) === 0 ? pathname.slice(repoBase.length) : pathname;
+        // Pastikan diawali '/'
+        if (relative[0] !== '/') relative = '/' + relative;
+        // Bangun URL hash-preserving
+        var target = repoBase + '/#' + relative;
+        // Redirect segera
+        window.location.replace(target);
+      } catch (e) {
+        // Jika error, fallback ke homepage setelah 3 detik
+        setTimeout(function(){ window.location.replace('/Viridelis/'); }, 3000);
+      }
+    })();
+  </script>
 </head>
 <body>
   <div class="box">
