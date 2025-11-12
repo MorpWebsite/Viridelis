@@ -1,0 +1,48 @@
+type User @table {
+  displayName: String!
+  createdAt: Timestamp!
+  email: String
+  photoUrl: String
+}
+
+type Plant @table {
+  user: User!
+  name: String!
+  species: Species!
+  acquisitionDate: Date!
+  createdAt: Timestamp!
+  imageUrl: String
+  notes: String
+  lastWatered: Timestamp
+  lastFertilized: Timestamp
+}
+
+type Species @table {
+  commonName: String!
+  scientificName: String!
+  careInstructions: String!
+  wateringFrequency: String!
+  lightRequirements: String!
+  imageUrl: String
+  description: String
+  humidityRequirements: String
+}
+
+type CareLog @table {
+  plant: Plant!
+  careType: String!
+  logDate: Timestamp!
+  createdAt: Timestamp!
+  notes: String
+  quantity: String
+}
+
+type Reminder @table {
+  plant: Plant!
+  reminderType: String!
+  scheduledDate: Timestamp!
+  createdAt: Timestamp!
+  frequency: String
+  notes: String
+  isCompleted: Boolean
+}

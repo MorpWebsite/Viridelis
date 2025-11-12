@@ -1,0 +1,39 @@
+mutation CreateNewUser($displayName: String!, $email: String, $photoUrl: String) @auth(level: USER) {
+  user_insert(data: {displayName: $displayName, email: $email, photoUrl: $photoUrl, createdAt_expr: "request.time", id_expr: "uuidV4()"})
+}
+
+query GetCurrentUser($id: UUID!) @auth(level: USER) {
+  user(id: $id) {
+    id
+    displayName
+    email
+    photoUrl
+    createdAt
+    plants_on_user {
+      id
+      name
+      species {
+        commonName
+        scientificName
+      }
+    }
+  }
+}
+
+mutation AddNewPlant($speciesId: UUID!, $name: String!, $acquisitionDate: Date!) @auth(level: USER) {
+  plant_insert(data: {speciesId: $speciesId, userId_expr: "auth.uid", name: $name, acquisitionDate: $acquisitionDate, createdAt_expr: "request.time", id_expr: "uuidV4()"})
+}
+
+query ListSpecies @auth(level: PUBLIC, insecureReason: "This operation is safe to expose to the public") {
+  speciess {
+    id
+    commonName
+    scientificName
+    description
+    careInstructions
+    wateringFrequency
+    lightRequirements
+    humidityRequirements
+    imageUrl
+  }
+}
