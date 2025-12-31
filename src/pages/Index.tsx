@@ -17,17 +17,17 @@ const Index = () => {
             <span className="text-2xl font-bold glow-text">Viridelis</span>
           </div>
           <div className="flex gap-4">
-            <Link to="/menu">
+            <Link to="/menu" className="text-white">
               <Button variant="ghost" className="text-white">
                 Menu
               </Button>
             </Link>
-            <Link to="/monitoring">
+            <Link to="/monitoring" className="text-white">
               <Button variant="ghost" className="text-white">
                 Monitoring
               </Button>
             </Link>
-            <Link to="/control">
+            <Link to="/control" className="text-white">
               <Button variant="ghost" className="text-white">
                 Control
               </Button>
@@ -110,7 +110,7 @@ const Index = () => {
       <footer className="relative z-10 container mx-auto px-4 py-8 mt-20 border-t border-border">
         <div className="flex justify-between items-center">
           <p className="text-muted-foreground">© 2024 Viridelis. Smart Greenhouse Monitoring System.</p>
-          <Link to="/developer">
+          <Link to="/developer" className="text-muted-foreground">
             <Button variant="ghost" className="text-muted-foreground">
               Developer Profile
             </Button>
