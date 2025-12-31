@@ -1,0 +1,110 @@
+mutation CreateDemoData @auth(level: PUBLIC, insecureReason: "This operation is used to seed data and does not contain any sensitive information") @transaction {
+  species_insertMany(data: [
+    {
+      id: "75307564-c96f-4a77-9711-c44c6855d663",
+      commonName: "Monstera Deliciosa",
+      scientificName: "Monstera deliciosa",
+      careInstructions: "Bright indirect light, water when top inch of soil is dry",
+      wateringFrequency: "Once a week",
+      humidityRequirements: "High",
+      lightRequirements: "Bright Indirect",
+      description: "A popular houseplant with iconic split leaves",
+      imageUrl: "https://example.com/monstera.jpg"
+    },
+    {
+      id: "4129b78a-7486-4441-a959-7f385a022d77",
+      commonName: "Peace Lily",
+      scientificName: "Spathiphyllum",
+      careInstructions: "Low to bright indirect light, keep soil moist",
+      wateringFrequency: "Every 1-2 weeks",
+      humidityRequirements: "Moderate",
+      lightRequirements: "Low to Bright Indirect",
+      description: "An elegant plant known for its air-purifying qualities",
+      imageUrl: "https://example.com/peacelily.jpg"
+    }
+  ])
+  user_insertMany(data: [
+    {
+      id: "2f61c4b9-7f8c-4113-952f-d7d197a34b47",
+      displayName: "Demo User 1",
+      email: "demouser1@example.com",
+      createdAt: "2024-04-26T12:00:00Z",
+      photoUrl: "https://example.com/avatar1.jpg"
+    },
+    {
+      id: "8e3a7c2f-8a9d-4c3b-b35e-6a5b7e9d1f2c",
+      displayName: "Demo User 2",
+      email: "demouser2@example.com",
+      createdAt: "2024-04-26T13:00:00Z",
+      photoUrl: "https://example.com/avatar2.jpg"
+    }
+  ])
+  plant_insertMany(data: [
+    {
+      id: "a1b2c3d4-e5f6-4789-90ab-cdef01234567",
+      speciesId: "75307564-c96f-4a77-9711-c44c6855d663",
+      userId: "2f61c4b9-7f8c-4113-952f-d7d197a34b47",
+      name: "My Monstera",
+      acquisitionDate: "2024-04-20",
+      createdAt: "2024-04-26T14:00:00Z",
+      imageUrl: "https://example.com/mymonstera.jpg",
+      lastWatered: "2024-04-25T10:00:00Z",
+      lastFertilized: "2024-04-15T10:00:00Z",
+      notes: "Needs repotting soon"
+    },
+    {
+      id: "b8c9d0e1-f2a3-4b5c-8d4e-5f6a7b8c9d0e",
+      speciesId: "4129b78a-7486-4441-a959-7f385a022d77",
+      userId: "8e3a7c2f-8a9d-4c3b-b35e-6a5b7e9d1f2c",
+      name: "My Peace Lily",
+      acquisitionDate: "2024-04-15",
+      createdAt: "2024-04-26T15:00:00Z",
+      imageUrl: "https://example.com/mypeacelily.jpg",
+      lastWatered: "2024-04-24T11:00:00Z",
+      lastFertilized: "2024-04-10T11:00:00Z",
+      notes: "Flowering nicely"
+    }
+  ])
+  reminder_insertMany(data: [
+    {
+      id: "c7d8e9f0-1a2b-4c5d-9e6f-7a8b9c0d1e2f",
+      plantId: "a1b2c3d4-e5f6-4789-90ab-cdef01234567",
+      reminderType: "Watering",
+      scheduledDate: "2024-05-03T10:00:00Z",
+      createdAt: "2024-04-26T16:00:00Z",
+      frequency: "Weekly",
+      isCompleted: false,
+      notes: "Water thoroughly"
+    },
+    {
+      id: "d4e5f601-2b3c-4d6e-8f70-8a9b8c0d2e3f",
+      plantId: "b8c9d0e1-f2a3-4b5c-8d4e-5f6a7b8c9d0e",
+      reminderType: "Fertilizing",
+      scheduledDate: "2024-05-10T11:00:00Z",
+      createdAt: "2024-04-26T17:00:00Z",
+      frequency: "Bi-weekly",
+      isCompleted: false,
+      notes: "Use a balanced fertilizer"
+    }
+  ])
+  careLog_insertMany(data: [
+    {
+      id: "e3f2d1c0-3a4b-4c5d-9e6f-7a8b9c0d3e4f",
+      plantId: "a1b2c3d4-e5f6-4789-90ab-cdef01234567",
+      careType: "Watering",
+      logDate: "2024-04-25T10:00:00Z",
+      createdAt: "2024-04-25T10:00:00Z",
+      notes: "Watered well",
+      quantity: "1 liter"
+    },
+    {
+      id: "f0e1d2c3-4b5c-4d6e-8f70-8a9b8c0d4e5f",
+      plantId: "b8c9d0e1-f2a3-4b5c-8d4e-5f6a7b8c9d0e",
+      careType: "Fertilizing",
+      logDate: "2024-04-10T11:00:00Z",
+      createdAt: "2024-04-10T11:00:00Z",
+      notes: "Used balanced fertilizer",
+      quantity: "50ml"
+    }
+  ])
+}
