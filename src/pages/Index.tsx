@@ -18,17 +18,17 @@ const Index = () => {
           </div>
           <div className="flex gap-4">
             <Link to="/menu">
-              <Button variant="ghost" className="text-foreground">
+              <Button variant="ghost" className="text-white">
                 Menu
               </Button>
             </Link>
             <Link to="/monitoring">
-              <Button variant="ghost" className="text-foreground">
+              <Button variant="ghost" className="text-white">
                 Monitoring
               </Button>
             </Link>
             <Link to="/control">
-              <Button variant="ghost" className="text-foreground">
+              <Button variant="ghost" className="text-white">
                 Control
               </Button>
             </Link>
