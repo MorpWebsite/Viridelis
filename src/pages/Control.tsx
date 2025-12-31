@@ -323,7 +323,7 @@ const checkFirebaseConnection = async () => {
             <Leaf className="w-8 h-8 text-primary" />
             <span className="text-2xl font-bold glow-text">Viridelis</span>
           </Link>
-          <Link to="/menu" className="text-foreground">
+          <Link to="/menu">
             <Button variant="ghost" className="text-foreground">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Kembali ke Menu

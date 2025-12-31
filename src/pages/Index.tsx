@@ -17,17 +17,17 @@ const Index = () => {
             <span className="text-2xl font-bold glow-text">Viridelis</span>
           </div>
           <div className="flex gap-4">
-            <Link to="/menu" className="text-white">
+            <Link to="/menu">
               <Button variant="ghost" className="text-white">
                 Menu
               </Button>
             </Link>
-            <Link to="/monitoring" className="text-white">
+            <Link to="/monitoring">
               <Button variant="ghost" className="text-white">
                 Monitoring
               </Button>
             </Link>
-            <Link to="/control" className="text-white">
+            <Link to="/control">
               <Button variant="ghost" className="text-white">
                 Control
               </Button>
@@ -37,7 +37,7 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <main className="relative z-10 container mx-auto px-4 py-20">
+      <main className="relative z-10 container mx-auto px-4 py-10 sm:py-20">
         <div className="text-center max-w-4xl mx-auto">
           <div className="inline-block mb-6">
             <div className="glass-card px-4 py-2 rounded-full">
@@ -45,13 +45,13 @@ const Index = () => {
             </div>
           </div>
           
-          <h1 className="text-6xl md:text-7xl font-bold mb-6 leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
             <span className="glow-text">Viridelis</span>
             <br />
             <span className="text-primary">Greenhouse Monitor</span>
           </h1>
           
-          <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
             Monitor dan kontrol greenhouse Anda secara real-time dengan teknologi IoT modern. 
             Pantau suhu, kelembaban, pH air, dan level air dari mana saja.
           </p>
@@ -110,7 +110,7 @@ const Index = () => {
       <footer className="relative z-10 container mx-auto px-4 py-8 mt-20 border-t border-border">
         <div className="flex justify-between items-center">
           <p className="text-muted-foreground">© 2024 Viridelis. Smart Greenhouse Monitoring System.</p>
-          <Link to="/developer" className="text-muted-foreground">
+          <Link to="/developer">
             <Button variant="ghost" className="text-muted-foreground">
               Developer Profile
             </Button>

@@ -6,6 +6,15 @@ a:active {
   color: inherit !important;
 }
 
+/* Hide scrollbars for a cleaner look */
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  scrollbar-width: none; /* Firefox */
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */
