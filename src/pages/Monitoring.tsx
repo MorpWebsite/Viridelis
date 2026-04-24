@@ -11,8 +11,6 @@ import {
   Leaf,
   Thermometer,
   Droplets,
-  FlaskConical,
-  Waves,
   ArrowLeft,
   RefreshCw,
   History,
@@ -34,8 +32,7 @@ const Monitoring = () => {
   const [sensorValues, setSensorValues] = useState({
     temperature: 0,
     humidity: 0,
-    ph: 0,
-    waterLevel: 0,
+    soilMoisture: 0,
     lastUpdate: 0,
   });
   const [sensorHistory, setSensorHistory] = useState<
@@ -43,8 +40,7 @@ const Monitoring = () => {
       timestamp: number;
       temperature: number;
       humidity: number;
-      ph: number;
-      waterLevel: number;
+      soilMoisture: number;
     }>
   >([]);
 
@@ -59,8 +55,7 @@ const Monitoring = () => {
           const newValues = {
             temperature: data.temperature || 0,
             humidity: data.humidity || 0,
-            ph: data.ph || 0,
-            waterLevel: data.waterLevel || 0,
+            soilMoisture: data.soilMoisture || 0,
             lastUpdate: data.lastUpdate || Date.now(),
           };
           setSensorValues(newValues);
@@ -121,8 +116,7 @@ const Monitoring = () => {
         setSensorValues({
           temperature: data.temperature || 0,
           humidity: data.humidity || 0,
-          ph: data.ph || 0,
-          waterLevel: data.waterLevel || 0,
+          soilMoisture: data.soilMoisture || 0,
           lastUpdate: data.lastUpdate || Date.now(),
         });
         toast({
@@ -152,8 +146,7 @@ const Monitoring = () => {
         timestamp: Date.now(),
         temperature: values.temperature,
         humidity: values.humidity,
-        ph: values.ph,
-        waterLevel: values.waterLevel,
+        soilMoisture: values.soilMoisture,
       });
     } catch (error) {
       console.error("Error saving history:", error);
@@ -193,28 +186,13 @@ const Monitoring = () => {
       gradient: "from-blue-500/20 to-cyan-500/20",
     },
     {
-      title: "pH Air",
-      value: sensorValues.ph.toFixed(1),
-      icon: FlaskConical,
-      status:
-        sensorValues.ph >= 6.0 && sensorValues.ph <= 7.5
-          ? "Normal"
-          : "Perlu Perhatian",
-      color:
-        sensorValues.ph >= 6.0 && sensorValues.ph <= 7.5
-          ? "text-primary"
-          : "text-red-500",
-      range: "6.0 - 7.5",
-      gradient: "from-purple-500/20 to-pink-500/20",
-    },
-    {
-      title: "Level Air",
-      value: `${sensorValues.waterLevel.toFixed(0)}%`,
-      icon: Waves,
-      status: sensorValues.waterLevel >= 30 ? "Baik" : "Rendah",
-      color: sensorValues.waterLevel >= 30 ? "text-primary" : "text-red-500",
-      range: "30% - 100%",
-      gradient: "from-teal-500/20 to-emerald-500/20",
+      title: "Kelembaban Tanah",
+      value: `${sensorValues.soilMoisture.toFixed(0)}%`,
+      icon: Leaf,
+      status: sensorValues.soilMoisture >= 30 ? "Cukup" : "Kering",
+      color: sensorValues.soilMoisture >= 30 ? "text-primary" : "text-red-500",
+      range: "30% - 70%",
+      gradient: "from-emerald-500/20 to-green-500/20",
     },
   ];
 
@@ -243,7 +221,7 @@ const Monitoring = () => {
             <span className="glow-text">Monitoring Greenhouse</span>
           </h1>
           <p className="text-muted-foreground text-lg mt-4 mb-4">
-            Pantau suhu, kelembaban, pH air, dan level air secara realtime
+            Pantau suhu, kelembaban udara, dan kelembaban tanah secara realtime
           </p>
         </div>
 
@@ -384,8 +362,7 @@ const Monitoring = () => {
                                 {new Date(log.timestamp).toLocaleString("id-ID")}
                               </p>
                               <p className="text-muted-foreground">
-                                Suhu: {log.temperature}°C | RH: {log.humidity}% | pH:{" "}
-                                {log.ph} | Level: {log.waterLevel}%
+                                Suhu: {log.temperature}°C | RH: {log.humidity}% | Kelembaban Tanah: {log.soilMoisture}%
                               </p>
                             </div>
                           </div>

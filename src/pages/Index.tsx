@@ -53,7 +53,7 @@ const Index = () => {
           
           <p className="text-lg sm:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
             Monitor dan kontrol greenhouse Anda secara real-time dengan teknologi IoT modern. 
-            Pantau suhu, kelembaban, pH air, dan level air dari mana saja.
+            Pantau suhu, kelembaban udara, dan kelembaban tanah dari mana saja.
           </p>
 
           <div className="flex flex-wrap gap-4 justify-center mb-20">
@@ -79,7 +79,7 @@ const Index = () => {
               </div>
               <h3 className="text-xl font-semibold mb-2">Real-time Monitoring</h3>
               <p className="text-muted-foreground">
-                Pantau kondisi greenhouse secara real-time dengan sensor DHT11
+                Pantau kondisi greenhouse secara real-time dengan sensor DHT22
               </p>
             </div>
 
@@ -89,7 +89,7 @@ const Index = () => {
               </div>
               <h3 className="text-xl font-semibold mb-2">Water Management</h3>
               <p className="text-muted-foreground">
-                Monitor pH dan level air untuk pertumbuhan optimal
+                Monitor kelembaban tanah untuk pertumbuhan optimal
               </p>
             </div>
 

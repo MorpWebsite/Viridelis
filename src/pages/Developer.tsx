@@ -9,10 +9,9 @@ const Developer = () => {
       category: "Hardware",
       icon: Cpu,
       items: [
-        "Arduino Uno R4 WiFi",
-        "DHT11 Temperature & Humidity Sensor",
-        "pH Water Sensor",
-        "Water Level Sensor",
+        "NodeMCU ESP8266",
+        "DHT22 Temperature & Humidity Sensor",
+        "Soil Moisture Sensor",
       ],
     },
     {
@@ -89,9 +88,7 @@ const Developer = () => {
                 perangkat dari jarak jauh.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                Dengan menggunakan sensor DHT11 untuk suhu dan kelembaban, sensor pH untuk kualitas air, 
-                dan sensor level air, sistem ini memberikan data akurat yang dapat diakses kapan saja 
-                melalui koneksi Firebase Realtime Database.
+                Dengan menggunakan sensor DHT22 untuk suhu dan kelembaban serta sensor kelembaban tanah, sistem ini memberikan data akurat yang dapat diakses kapan saja melalui koneksi Firebase Realtime Database.
               </p>
             </CardContent>
           </Card>
@@ -130,11 +127,11 @@ const Developer = () => {
             <CardContent>
               <div className="space-y-3">
                 {[
-                  "Monitoring real-time suhu, kelembaban, pH air, dan level air",
+                  "Monitoring real-time suhu, kelembaban udara, dan kelembaban tanah",
                   "Kontrol jarak jauh untuk kipas, lampu, pompa air, dan pemanas",
                   "Interface modern dengan desain futuristik",
                   "Notifikasi otomatis untuk kondisi abnormal",
-                  "Integrasi dengan Arduino Uno R4 WiFi",
+                  "Integrasi dengan NodeMCU ESP8266",
                   "Data tersimpan di cloud dengan Firebase",
                   "Responsive design untuk berbagai perangkat",
                 ].map((feature, index) => (
